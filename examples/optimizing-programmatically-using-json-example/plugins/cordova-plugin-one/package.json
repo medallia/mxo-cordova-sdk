@@ -1,0 +1,35 @@
+{
+  "name": "cordova-plugin-one",
+  "version": "2.1.1",
+  "description": "One Cordova Plugin for the ONE SDK for iOS and Android",
+  "homepage": "https://www.thunderhead.com/",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/thunderheadone/one-sdk-cordova"
+  },
+  "cordova": {
+    "id": "cordova-plugin-one",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "ecosystem:phonegap",
+    "cordova-ios",
+    "cordova-android",
+    "one",
+    "thunderhead",
+    "ONE Engagement Hub"
+  ],
+  "scripts": {
+    "prepublish": "node ./scripts/bump-cordova-sdk-package-version.js"
+  },
+  "devDependencies": {
+    "shelljs": "0.7.8"
+  },
+  "author": "Thunderhead One, Inc.",
+  "license": "Copyright © 2021 Thunderhead. All rights reserved."
+}

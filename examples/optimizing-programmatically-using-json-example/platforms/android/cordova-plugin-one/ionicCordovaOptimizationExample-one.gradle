@@ -1,0 +1,9 @@
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
+
+ext.cdvBuildToolsVersion = '30.0.3'
+
+repositories {
+    maven {
+        url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+    }
+}
