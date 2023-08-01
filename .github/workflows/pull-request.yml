@@ -1,0 +1,49 @@
+name: Pull Request on Release Branch Push
+on:
+  push:
+    branches:
+      - 'release/**'
+jobs:
+  auto-pull-request:
+    name: Release Pull Request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3  
+        with:
+          fetch-depth: 0
+      - name: Get Main SHA 
+        id: main_sha
+        run: |
+          git fetch origin main:refs/remotes/origin/main
+          MAIN_SHA=$(git rev-parse origin/main)
+          echo "main_sha=$MAIN_SHA" >> $GITHUB_OUTPUT
+          
+      - name: Check Readme Exists
+        id: check_readme_exists
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "README.md"
+          fail: true
+
+      - name: Check Changelog Exists
+        id: check_changelog_exists
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "CHANGELOG.md"
+          fail: false
+
+      - name: Get Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v34
+        with:
+          base_sha: ${{ steps.main_sha.outputs.main_sha }}
+       
+      - name: Create Pull Request
+        if: steps.check_changelog_exists.outputs.files_exists == 'true' && contains(steps.changed-files.outputs.all_changed_files, 'CHANGELOG.md')
+        id: create_pull_request
+        uses: vsoch/pull-request-action@1.0.23
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_PREFIX: "release/"
+          PULL_REQUEST_BRANCH: "main"
+          PULL_REQUEST_REVIEWERS: "skhozinMedallia jtullgrenMedallia"
