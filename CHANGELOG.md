@@ -1,3 +1,7 @@
+#### Version 1.0.3
+* [UPDATE] MXO iOS [v1.2.1](https://github.com/medallia/mxo-ios-sdk/releases/tag/1.2.1) which includes the Privacy Manifests based on Apple requirements. 
+* [UPDATE] Updated minimum deployment target to iOS 12.0.
+
 #### Version 1.0.2
 * [UPDATE] MXO iOS [v1.1.3](https://github.com/medallia/mxo-ios-sdk/releases/tag/1.1.3) and Android [v1.1.2](https://github.com/medallia/mxo-android-sdk/releases/tag/1.1.2) SDKs.
 * [BUGFIX] Fixed an issue with `contentUrl` not being returned in `MXOAsset` for external assets.
